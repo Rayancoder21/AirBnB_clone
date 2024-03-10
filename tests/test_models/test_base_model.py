@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ the file is to test the BaseModel"""
 import unittest
-from models import BaseModel
+from models.base_model import BaseModel
 
 
 class TestBasemodel(unittest.TestCase):
