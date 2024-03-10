@@ -1,17 +1,16 @@
 #!/usr/bin/python3
 """ Defines the BaseModel class"""
-import models
 import uuid
 from datetime import datetime
 
 
 class BaseModel:
     """Represents the BaseModel of the HBnB project """
-    def __init__(self, id, created_at, updated_at):
+    def __init__(self):
         """ Initialize a new BaseModel"""
         self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        self.created_at = datetime.utcnow()
+        self.updated_at = datetime.utcnow()
 
     def __str__(self):
         """ Return the print/str representation of the BaseModel instance"""
@@ -20,13 +19,26 @@ class BaseModel:
 
     def save(self):
         """ updates the public instance attribute updated_at"""
-        self.updated_at = datetime.now()
-        models.storage.save()
+        self.updated_at = datetime.utcnow()
 
     def to_dict(self):
         """ returns a dictionary containing values of __dict__"""
         dictionary = self.__dict__.copy()
+        dictionary["__class__"] = self.__class__.__name__
         dictionary["created_at"] = self.created_at.isoformat()
         dictionary["updated_at"] = self.updated_at.isoformat()
-        dictionary["__class__"] = self.__class__.__name__
         return dictionary
+
+
+if __name__ == "__main__":
+    my_model = BaseModel()
+    my_model.name = "My First Model"
+    my_model.my_number = 89
+    print(my_model)
+    my_model.save()
+    print(my_model)
+    myJson = my_model.to_dict()
+    print(myJson)
+    print("JSON of my_model:")
+    for key in myJson.keys():
+        print("\t{}: ({}) - {}".format(key, type(myJson[key]), myJson[key]))
