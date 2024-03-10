@@ -2,10 +2,10 @@
 """ Defines the BaseModel class"""
 import models
 import uuid
-import datetime from datetime
+from datetime import datetime
 
 
-class BaseModel():
+class BaseModel:
     """Represents the BaseModel of the HBnB project """
     def __init__(self, *args, **kwargs):
         """ Initialize a new BaseModel"""
@@ -13,14 +13,16 @@ class BaseModel():
         form_time = "%Y-%m-%dT%H:%M:%S.%f"
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
-        if len(kwargs) != 0:
+
+        """if len(kwargs) != 0:
             for k, v in kwargs.items():
                 if k == "created_at" or k == "updated_at":
-                    self.__dict__[k] = datetime.strptime(v, tform)
+                    self.__dict__[k] = datetime.strptime(v, form_time)
                 else:
                     self.__dict__[k] = v
         else:
             models.storage.new(self)
+"""
 
     def __str__(self):
         """ Return the print/str representation of the BaseModel instance"""
