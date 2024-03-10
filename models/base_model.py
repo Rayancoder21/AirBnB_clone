@@ -7,10 +7,10 @@ from datetime import datetime
 
 class BaseModel:
     """Represents the BaseModel of the HBnB project """
-    def __init__(self, *args, **kwargs):
+    def __init__(self, id, created_at, updated_at):
         """ Initialize a new BaseModel"""
         self.id = str(uuid.uuid4())
-        form_time = "%Y-%m-%dT%H:%M:%S.%f"
+        """form_time = "%Y-%m-%dT%H:%M:%S.%f"""
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
 
